@@ -1,64 +1,6 @@
 <?php
-function numberRange($first, $last, $step=1) {
-	$numbers = array();
-	$cur = $first;
-	while($cur < $last) {
-		$numbers[] = $cur;
-		$cur += $step;
-	}
-	return $numbers;
-}
-function dateRange( $first, $last, $step = '+1 day', $format = 'Y-m-d' ) {
 
-	$dates = array();
-	$current = strtotime( $first );
-	$last = strtotime( $last );
-
-	while( $current < $last ) {
-
-		$dates[] = date( $format, $current );
-		$current = strtotime( $step, $current );
-	}
-
-	return $dates;
-}
-/**
-* generate random string
-*/
-function generateRandomString($length = 10) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
-/**
-* Random number with normal distribution: Box_Muller algorithm
-*/
-function normal_random($min, $max, $std_dev, $step=1){
-	$rand1 = (float)mt_rand()/(float)mt_getrandmax();
-	$rand2 = (float)mt_rand()/(float)mt_getrandmax();
-	$guassian_num = sqrt(-2 * log($rand1)) * cos(2 * M_PI * $rand2);
-	$mean = ($max + $min) / 2;
-	$random_num = ($guassian_num * $std_dev) + $mean;
-	$random_num = round($random_num / $step) * $step;
-	if($random_num < $min || $random_num > $max) $random_num = normal_random($min, $max, $std_dev, $step);// make sure in the range
-	return $random_num;
-}
-/**
-*Random number uniformly
-*/
-function uniform_random($min, $max, $step=1){
-	$rand = (float)mt_rand()/(float)mt_getrandmax();
-	$random_num = $min + $rand * ($max - $min);
-	$random_num = round($random_num / $step) * $step;
-	if($random_num < $min || $random_num > $max) $random_num = uniform_random($min, $max, $step);
-	return $random_num;
-}
-
-
+require_once 'functions.php';
 class Free_generator extends CI_Model {
 	var $region_flag;
 	var $tables;
@@ -151,6 +93,11 @@ class Free_generator extends CI_Model {
 			
 			case 'DATE':
 				return $this->g_date($type);
+				break;
+
+			case 'GENDER':
+				$g = array('M','F');
+				return $g[array_rand($g)];
 				break;
 
 			default:

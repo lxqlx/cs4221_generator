@@ -77,7 +77,7 @@ class Data_generate_model_ram extends CI_Model {
 	
 	private function get_amount() {
 		//return $_POST['amount'];
-		return 10000;
+		return 100;
 	}
 	private function get_countries() {
 		return array('China', 'Japan', 'Malaysia');
@@ -96,7 +96,7 @@ class Data_generate_model_ram extends CI_Model {
 	private function get_free_normal_types() {
 		return array(6 => array('datatype' => 'INTEGER', 'low' => 2, 'high' => 200, 'step' => 2, 'distribution' => 'uniform',
 			'std_dev' => '9'),
-						9 => array('datatype' => 'PHONE'));
+						9 => array('datatype' => 'GENDER'));
 	}
 
 	

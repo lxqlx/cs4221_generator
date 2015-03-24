@@ -75,7 +75,7 @@ class Data_generate_model extends CI_Model {
 	
 	private function get_amount() {
 		//return $_POST['amount'];
-		return 100000;
+		return 100;
 	}
 	private function get_countries() {
 		return array('China', 'Japan', 'Malaysia');
