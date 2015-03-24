@@ -190,8 +190,8 @@ class Free_generator extends CI_Model {
 		$low = (float)0;
 		$high = (float)1000;
 		$step = 0.01;
-		if (isset($type['low'])) $low = (float)$type['low'];
-		if (isset($type['high'])) $high = (float)$type['high'];
+		if (isset($type['lowerbound'])) $low = (float)$type['lowerbound'];
+		if (isset($type['upperbound'])) $high = (float)$type['upperbound'];
 		if (isset($type['step'])) $step = (float)$type['step'];
 		$size = floor(($high-$low)/$step);
 		if ($size < $this->amount) {
@@ -237,8 +237,8 @@ class Free_generator extends CI_Model {
 		$type = $this->u_types[$key];
 		$low = strtotime("-10000days");
 		$high = strtotime("+10000days");
-		if (isset($type['low'])) $low = strtotime($type['low']);
-		if (isset($type['high'])) $high = strtotime($type['high']);
+		if (isset($type['lowerbound'])) $low = strtotime($type['lowerbound']);
+		if (isset($type['upperbound'])) $high = strtotime($type['upperbound']);
      	$datediff = $high - $low;
      	$days = floor($datediff/(60*60*24));
      	$start = date('Y-m-d', $low);
@@ -274,12 +274,12 @@ class Free_generator extends CI_Model {
 		$low = 0;
 		$high = 100;
 		$step = 1;
-		if(isset($type['low'])) $low = $type['low'];
-		if(isset($type['high'])) $high = $type['high'];
+		if(isset($type['lowerbound'])) $low = $type['lowerbound'];
+		if(isset($type['upperbound'])) $high = $type['upperbound'];
 		if(isset($type['step'])) $step = $type['step'];
 
 		if(isset($type['distribution']) && $type['distribution'] == 'normal') {
-			$std_dev = $type['std_dev'];
+			$std_dev = $type['stanadarddeviation'];
 			return normal_random($low, $high, $std_dev, $step);
 		}
 		return uniform_random($low, $high, $step);
@@ -289,12 +289,12 @@ class Free_generator extends CI_Model {
 		$low = 0;
 		$high = 100;
 		$step = 0.01;
-		if(isset($type['low'])) $low = $type['low'];
-		if(isset($type['high'])) $high = $type['high'];
+		if(isset($type['lowerbound'])) $low = $type['lowerbound'];
+		if(isset($type['upperbound'])) $high = $type['upperbound'];
 		if(isset($type['step'])) $step = $type['step'];
 
 		if(isset($type['distribution']) && $type['distribution'] == 'normal') {
-			$std_dev = $type['std_dev'];
+			$std_dev = $type['stanadarddeviation'];
 			return normal_random($low, $high, $std_dev, $step);
 		}
 		return uniform_random($low, $high, $step);
@@ -309,12 +309,12 @@ class Free_generator extends CI_Model {
 		$high = strtotime('now');
 		$format = "Y-m-d";
 		$step = 86400;
-		if(isset($type['low'])) $low = strtotime($type['low']);
-		if(isset($type['high'])) $high = strtotime($type['high']);
+		if(isset($type['lowerbound'])) $low = strtotime($type['lowerbound']);
+		if(isset($type['upperbound'])) $high = strtotime($type['upperbound']);
 		if(isset($type['format'])) $format = strtotime($type['format']);
 
 		if(isset($type['distribution']) && $type['distribution'] == 'normal') {
-			$std_dev = $type['std_dev'] * 86400;
+			$std_dev = $type['stanadarddeviation'] * 86400;
 			return date($format, normal_random($low, $high, $std_dev, $step));
 		}
 		return date($format, uniform_random($low, $high, $step));
