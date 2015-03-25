@@ -1,4 +1,4 @@
- <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -26,13 +26,10 @@
             </p>
           </div>
          </div>
-
-			<?php echo validation_errors(); ?>
-
-			<?php echo form_open('datagenerator') ?>
-
-			<div class="col-xs-12 main" id="country">
-            <select class="selectpicker col-xs-12" title="Select countries" id="countries" multiple >
+         <?php echo validation_errors(); ?>
+          <?php echo form_open('datagenerator'); ?>
+          <div class="col-xs-12 main" id="country">
+            <select class="selectpicker col-xs-12" title="Select countries" id="countries" name="countries[]" multiple >
               <optgroup data-icon="glyphicon-globe" label="East Asia">
                 <option data-icon="glyphicon-grain">China</option>
                 <option data-icon="glyphicon-grain">Japan</option>
@@ -70,10 +67,10 @@
               <tbody>
                 <tr id="1">
                     <td>
-                        <input type="email" class="filedname form-control" id="fieldname1" placeholder="Enter field name" >
+                        <input type="text" class="filedname form-control" id="fieldname1" name="fieldname1" placeholder="Enter field name" >
                     </td>
                     <td>
-                        <select class="datatype form-control" id="datatype1">
+                        <select class="datatype form-control" id="datatype1" name="datatype1">
                         <optgroup label = "Regional">
                           <option value="namer">name_regional</option>
                           <option value="emailr">email_regional</option>
@@ -83,7 +80,6 @@
                         <optgroup label = "Not Regional">
                           <option value="name">name</option>
                           <option value="email">email</option>
-                          <option value="country">country</option>
                           <option value="phone">phone</option>
                           <option value="gender">gender</option>
                           <option value="date"> date</option>
@@ -94,24 +90,24 @@
                         </select>
                     </td>
                     <td>
-                        <select class="constrain form-control" id="constrain1">
+                        <select class="constrain form-control" id="constrain1" name="constrain1">
                         <option value="primay">primary key</option>
                         <option value="unique">unique</option>
                         <option value="notnull">not null</option>
                         </select>
                     </td>
                     <td>
-                       <input type="email" class="lowerbound form-control" id="lowerbound1" placeholder="lower bound">
+                       <input type="text" class="lowerbound form-control" id="lowerbound1" name="lowerbound1" placeholder="lower bound">
                     </td>
                     <td>
-                       <input type="email" class="upperbound form-control" id="upperbound1" placeholder="upper bound">
+                       <input type="text" class="upperbound form-control" id="upperbound1" name="upperbound1" placeholder="upper bound">
                     </td>
                     <td>
                        <select class="distribution form-control" id="distribution1">
                         <option value="normal">normal distribution</option>
                         <option value="uniform" selected>uniform</option>
                        </select>
-                       <input type="email" class="standarddeviation form-control" id="stanadarddeviation1" placeholder="standard deviation">                   
+                       <input type="text" class="standarddeviation form-control" id="stanadarddeviation1" name"stanadarddeviation1" placeholder="standard deviation">                   
                     </td>
                     <td>
                       <button type="button" class="close" aria-label="Close" id="1"><span aria-hidden="true">&times;</span></button>
@@ -119,10 +115,10 @@
                 </tr>
                 <tr id="2">
                     <td>
-                        <input type="email" class="filedname form-control" id="fieldname2" placeholder="Enter field name">
+                        <input type="text" class="filedname form-control" id="fieldname2" name="fieldname2" placeholder="Enter field name">
                     </td>
                     <td>
-                        <select class="datatype form-control" id="datatype2">
+                        <select class="datatype form-control" id="datatype2" name="datatype2">
                         <optgroup label = "Regional">
                           <option value="namer">name_regional</option>
                           <option value="emailr">email_regional</option>
@@ -132,7 +128,6 @@
                         <optgroup label = "Not Regional">
                           <option value="name">name</option>
                           <option value="email">email</option>
-                          <option value="country">country</option>
                           <option value="phone">phone</option>
                           <option value="gender">gender</option>
                           <option value="date"> date</option>
@@ -143,24 +138,24 @@
                         </select>
                     </td>
                     <td>
-                        <select class="constrain form-control" id="constrain2">
+                        <select class="constrain form-control" id="constrain2" name="constrain2">
                         <option value="primay">primary key</option>
                         <option value="unique">unique</option>
                         <option value="notnull">not null</option>
                         </select>
                     </td>
                     <td>
-                       <input type="email" class="lowerbound form-control" id="lowerbound2" placeholder="lower bound">
+                       <input type="text" class="lowerbound form-control" id="lowerbound2" name="lowerbound2" placeholder="lower bound">
                     </td>
                     <td>
-                       <input type="email" class="upperbound form-control" id="upperbound2" placeholder="upper bound">
+                       <input type="text" class="upperbound form-control" id="upperbound2" name="upperbound2" placeholder="upper bound">
                     </td>
                     <td>
-                       <select class="distribution form-control" id="distribution2">
+                       <select class="distribution form-control" id="distribution2" name="distribution2">
                         <option value="normal">normal distribution</option>
                         <option value="uniform" selected>uniform</option>
                        </select>
-                       <input type="email" class="standarddeviation form-control" id="stanadarddeviation2" placeholder="standard deviation">                    
+                       <input type="text" class="standarddeviation form-control" id="stanadarddeviation2" name="stanadarddeviation2" placeholder="standard deviation">                    
                     </td>
                     <td>
                       <button type="button" class="close" aria-label="Close" id="2"><span aria-hidden="true">&times;</span></button>
@@ -168,10 +163,10 @@
                 </tr>
                 <tr id="3">
                     <td>
-                        <input type="email" class="filedname form-control" id="fieldname3" placeholder="Enter field name">
+                        <input type="text" class="filedname form-control" id="fieldname3" name="fieldname3" placeholder="Enter field name">
                     </td>
                     <td>
-                        <select class="datatype form-control" id="datatype3">
+                        <select class="datatype form-control" id="datatype3" name="datatype3">
                         <optgroup label = "Regional">
                           <option value="namer">name_regional</option>
                           <option value="emailr">email_regional</option>
@@ -181,7 +176,6 @@
                         <optgroup label = "Not Regional">
                           <option value="name">name</option>
                           <option value="email">email</option>
-                          <option value="country">country</option>
                           <option value="phone">phone</option>
                           <option value="gender">gender</option>
                           <option value="date"> date</option>
@@ -192,24 +186,24 @@
                         </select>
                     </td>
                     <td>
-                        <select class="constrain form-control" id="constrain3">
+                        <select class="constrain form-control" id="constrain3" name="constrain3">
                         <option value="primay">primary key</option>
                         <option value="unique">unique</option>
                         <option value="notnull">not null</option>
                         </select>
                     </td>
                     <td>
-                       <input type="email" class="lowerbound form-control" id="lowerbound3" placeholder="lower bound">
+                       <input type="text" class="lowerbound form-control" id="lowerbound3" name="lowerbound3" placeholder="lower bound">
                     </td>
                     <td>
-                       <input type="email" class="upperbound form-control" id="upperbound3" placeholder="upper bound">
+                       <input type="text" class="upperbound form-control" id="upperbound3" name="upperbound3" placeholder="upper bound">
                     </td>
                     <td>
                        <select class="distribution form-control" id="distribution3">
                         <option value="normal">normal distribution</option>
                         <option value="uniform" selected>uniform</option>
                        </select>
-                       <input type="email" class="standarddeviation form-control" id="stanadarddeviation3" placeholder="standard deviation">                 
+                       <input type="text" class="standarddeviation form-control" id="stanadarddeviation3" name="stanadarddeviation3" placeholder="standard deviation">                 
                     </td>
                     <td>
                       <button type="button" class="close" aria-label="Close" id="3"><span aria-hidden="true">&times;</span></button>
@@ -217,10 +211,10 @@
                 </tr>
                 <tr id="4">
                     <td>
-                        <input type="email" class="filedname form-control" id="fieldname4" placeholder="Enter field name">
+                        <input type="text" class="filedname form-control" id="fieldname4" name="fieldname4" placeholder="Enter field name">
                     </td>
                     <td>
-                        <select class="datatype form-control" id="datatype4">
+                        <select class="datatype form-control" id="datatype4" name="datatype4">
                         <optgroup label = "Regional">
                           <option value="namer">name_regional</option>
                           <option value="emailr">email_regional</option>
@@ -230,7 +224,6 @@
                         <optgroup label = "Not Regional">
                           <option value="name">name</option>
                           <option value="email">email</option>
-                          <option value="country">country</option>
                           <option value="phone">phone</option>
                           <option value="gender">gender</option>
                           <option value="date"> date</option>
@@ -241,24 +234,24 @@
                         </select>
                     </td>
                     <td>
-                        <select class="constrain form-control" id="constrain4">
+                        <select class="constrain form-control" id="constrain4" name="constrain4">
                         <option value="primay">primary key</option>
                         <option value="unique">unique</option>
                         <option value="notnull">not null</option>
                         </select>
                     </td>
                     <td>
-                       <input type="email" class="lowerbound form-control" id="lowerbound4" placeholder="lower bound">
+                       <input type="text" class="lowerbound form-control" id="lowerbound4" name="lowerbound4" placeholder="lower bound">
                     </td>
                     <td>
-                       <input type="email" class="upperbound form-control" id="upperbound4" placeholder="upper bound">
+                       <input type="text" class="upperbound form-control" id="upperbound4" name="upperbound4" placeholder="upper bound">
                     </td>
                     <td>
                        <select class="distribution form-control" id="distribution4">
                         <option value="normal">normal distribution</option>
                         <option value="uniform" selected>uniform</option>
                        </select>
-                       <input type="email" class="standarddeviation form-control" id="stanadarddeviation4" placeholder="standard deviation">                    
+                       <input type="text" class="standarddeviation form-control" id="stanadarddeviation4" name="stanadarddeviation4" placeholder="standard deviation">                    
                     </td>
                     <td>
                       <button type="button" class="close" aria-label="Close" id="4"><span aria-hidden="true">&times;</span></button>
@@ -278,34 +271,25 @@
         <div class="col-xs-12 main" id = "generate">
             <div class="form-group">
               <label for="exampleInputEmail2">#Rows: </label>
-              <input type="text" class="form-control" name="rows" placeholder="Enter an integer">  
+              <input type="text" class="form-control" id="rows" name="rows" placeholder="Enter an integer">  
             </div>
             <div class="form-group">
               <label for="exampleInputEmail2">Output Formats: </label>
               <select class="form-control">
                       <option>CSV</option>
-                      <option>JSON</option>
               </select> 
             </div>
             <button type="submit" class="btn btn-default">Generate</button>
           
         </div>
-
-				
-
-				<label for='datatype2'> Type2 </label>
-		<div class="col-xs-12 main" id = "generate">
-              <label for="exampleInputEmail2">#Rows: </label>
-			<div class="form-group">
-				<input type='text' class="form-control" name='datatype2' value='country1' placeholder="Enter an integer"/><br />
-			</div>
-		</div>
+      </form>
+        
+        
+     
+    </div>
 
 
-			</form>
-
-	</div>
- <script>
+    <script>
           var size = 4;
           
           
@@ -315,10 +299,10 @@
                size ++;
                var newRow = '<tr id="'+size+'">'+
                     '<td>'+
-                        '<input type="email" class="filedname form-control" id="fieldname'+size+'" placeholder="Enter field name">'+
+                        '<input type="text" class="filedname form-control" id="fieldname'+size+'" name="fieldname'+size+'" placeholder="Enter field name">'+
                     '</td>'+
                     '<td>'+
-                        '<select class="datatype form-control" id="datatype'+size+'">'+
+                        '<select class="datatype form-control" id="datatype'+size+'" name="datatype'+size+'">'+
                         '<optgroup label = "Regional">'+
                           '<option value="namer">name_regional</option>'+
                           '<option value="emailr">email_regional</option>'+
@@ -328,7 +312,6 @@
                         '<optgroup label = "Not Regional">'+
                           '<option value="name">name</option>'+
                           '<option value="email">email</option>'+
-                          '<option value="country">country</option>'+
                           '<option value="phone">phone</option>'+
                           '<option value="gender">gender</option>'+
                           '<option value="date"> date</option>'+
@@ -339,24 +322,24 @@
                         '</select>'+
                     '</td>'+
                     '<td>'+
-                        '<select class="constrain form-control" id="constrain'+size+'">'+
+                        '<select class="constrain form-control" id="constrain'+size+'" name="constrain'+size+'">'+
                         '<option value="primay">primary key</option>'+
                         '<option value="unique">unique</option>'+
                         '<option value="notnull">not null</option>'+
                         '</select>'+
                     '</td>'+
                     '<td>'+
-                       '<input type="email" class="lowerbound form-control" id="lowerbound'+size+'" placeholder="lower bound">'+
+                       '<input type="text" class="lowerbound form-control" id="lowerbound'+size+'" name="lowerbound'+size+'" placeholder="lower bound">'+
                     '</td>'+
                     '<td>'+
-                       '<input type="email" class="upperbound form-control" id="upperbound'+size+'" placeholder="upper bound">'+
+                       '<input type="text" class="upperbound form-control" id="upperbound'+size+'" name="upperbound'+size+'" placeholder="upper bound">'+
                     '</td>'+
                     '<td>'+
-                       '<select class="distribution form-control" id="distribution'+size+'">'+
+                       '<select class="distribution form-control" id="distribution'+size+'" name="distribution'+size+'">'+
                         '<option value="normal">normal distribution</option>'+
                         '<option value="uniform" selected>uniform</option>'+
                        '</select>'+ 
-                       '<input type="email" class="standarddeviation form-control" id="stanadarddeviation'+size+'" placeholder="standard deviation">'+              
+                       '<input type="text" class="standarddeviation form-control" id="stanadarddeviation'+size+'" name="stanadarddeviation'+size+'" placeholder="standard deviation">'+              
                     '</td>'+
                     '<td>'+
                       '<button type="button" class="close" aria-label="Close" id="'+size+'"><span aria-hidden="true">&times;</span></button>'+

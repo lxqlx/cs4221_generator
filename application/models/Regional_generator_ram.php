@@ -225,8 +225,9 @@ class Regional_generator_ram extends CI_Model {
 		foreach ($this->language_ids as $lang => $entry_ids) {
 			$size = count($entry_ids);
 			$query = $this->db->query("SELECT firstn,lastn FROM firstname,lastname
-				WHERE firstname.flanguage=lastname.llanguage ORDER BY RAND() LIMIT $size");
+				WHERE firstname.flanguage=lastname.llanguage and firstname.flanguage='$lang' ORDER BY RAND() LIMIT $size");
 			$index = 0;
+			if (count($query->result()) < $size) die("Not enough unique names!");
 			foreach ($query->result() as $row) {
 				$entry_id = $entry_ids[$index];
 				$this->tables[$id][$entry_id] = "".$row->firstn." ".$row->lastn;

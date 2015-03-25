@@ -180,7 +180,23 @@ class Free_generator extends CI_Model {
 	private function g_unique_integer($key){
 		$start = 1;
 		$type = $this->u_types[$key];
-		if (isset($type['start'])) $start = $type['start'];
+		if (isset($type['lowerbound'])) {
+			if (is_numeric($type['lowerbound'])) {
+				$start = (int)$type['lowerbound'];
+			}else {
+				die("Integer lowerbound is invalid!");
+			}
+		}
+		if (isset($type['upperbound'])) {
+			if (is_numeric($type['upperbound'])) {
+				$upper = (int)$type['upperbound'];
+				if ($upper - $start < $this->amount -1 ){
+					die("Not enough unique integers!");
+				}
+			}else {
+				die("Integer upperbound is invalid!");
+			}
+		}
 		for($i=$start; $i< $start+$this->amount; $i++) {
 			array_push($this->tables[$key], $i);
 		}
@@ -190,11 +206,27 @@ class Free_generator extends CI_Model {
 		$low = (float)0;
 		$high = (float)1000;
 		$step = 0.01;
-		if (isset($type['lowerbound'])) $low = (float)$type['lowerbound'];
-		if (isset($type['upperbound'])) $high = (float)$type['upperbound'];
-		if (isset($type['step'])) $step = (float)$type['step'];
+		if (isset($type['lowerbound'])) {
+			if (is_numeric($type['lowerbound'])) {
+				$low = (float)$type['lowerbound'];
+			}else {
+				die("Float lowerbound is invalid!");
+			}
+		}
+		if (isset($type['upperbound'])) {
+			if (is_numeric($type['upperbound'])) {
+				$high = (float)$type['upperbound'];
+			}else {
+				die("Float upperbound is invalid!");
+			}
+		}
+		if ($low > $high) {
+			die("Float lowerbound is larger than upperbound!");
+		}
+		if (isset($type['step']) && is_numeric($type['step'])) {$step = (float)$type['step'];}
 		$size = floor(($high-$low)/$step);
 		if ($size < $this->amount) {
+			die("Not enough unique float numbers!");
 			$cur = $low;
 			for($i=0; $i<$size; $i++) {
 				array_push($this->tables[$key], $cur);
@@ -237,13 +269,18 @@ class Free_generator extends CI_Model {
 		$type = $this->u_types[$key];
 		$low = strtotime("-10000days");
 		$high = strtotime("+10000days");
-		if (isset($type['lowerbound'])) $low = strtotime($type['lowerbound']);
-		if (isset($type['upperbound'])) $high = strtotime($type['upperbound']);
+		if(isset($type['lowerbound']) && $type['lowerbound'] !== '') $low = strtotime($type['lowerbound']);
+		if(isset($type['upperbound']) && $type['upperbound'] !== '') $high = strtotime($type['upperbound']);
+		$high += 86400;
+		if ($low >= $high) {
+			die('Date lowerbound is higher than upper bound');
+		}
      	$datediff = $high - $low;
      	$days = floor($datediff/(60*60*24));
      	$start = date('Y-m-d', $low);
      	$end = date('Y-m-d', $high);
      	if( $days < $this->amount) {
+     		die("Not enough unique days!");
      		$result = dateRange($start, $end);
      		shuffle($result);
      		for($i = 0; $i < $this->amount-$days; $i++) {
@@ -274,8 +311,21 @@ class Free_generator extends CI_Model {
 		$low = 0;
 		$high = 100;
 		$step = 1;
-		if(isset($type['lowerbound'])) $low = $type['lowerbound'];
-		if(isset($type['upperbound'])) $high = $type['upperbound'];
+		if(isset($type['lowerbound'])) {
+			if (is_numeric($type['lowerbound'])){
+				$low = (int)$type['lowerbound'];
+			}else{
+				die('Integer lowerbound not valid!');
+			}
+		}
+		if(isset($type['upperbound'])){
+			if (is_numeric($type['upperbound'])){
+				$high = (int)$type['upperbound'];
+			}else{
+				die('Integer upperbound not valid!');
+			}
+		} 
+		if ($low > $high) die("Integer lowerbound is larger than upperbound!");
 		if(isset($type['step'])) $step = $type['step'];
 
 		if(isset($type['distribution']) && $type['distribution'] == 'normal') {
@@ -286,11 +336,23 @@ class Free_generator extends CI_Model {
 	}
 
 	private function g_float($type){
-		$low = 0;
-		$high = 100;
+		$low = (float)0;
+		$high = (float)100;
 		$step = 0.01;
-		if(isset($type['lowerbound'])) $low = $type['lowerbound'];
-		if(isset($type['upperbound'])) $high = $type['upperbound'];
+		if(isset($type['lowerbound'])) {
+			if (is_numeric($type['lowerbound'])){
+				$low = (float)$type['lowerbound'];
+			}else{
+				die('Float lowerbound not valid!');
+			}
+		}
+		if(isset($type['upperbound'])){
+			if (is_numeric($type['upperbound'])){
+				$high = (float)$type['upperbound'];
+			}else{
+				die('Float upperbound not valid!');
+			}
+		} 
 		if(isset($type['step'])) $step = $type['step'];
 
 		if(isset($type['distribution']) && $type['distribution'] == 'normal') {
@@ -309,10 +371,13 @@ class Free_generator extends CI_Model {
 		$high = strtotime('now');
 		$format = "Y-m-d";
 		$step = 86400;
-		if(isset($type['lowerbound'])) $low = strtotime($type['lowerbound']);
-		if(isset($type['upperbound'])) $high = strtotime($type['upperbound']);
+		if(isset($type['lowerbound']) && $type['lowerbound'] !== '') $low = strtotime($type['lowerbound']);
+		if(isset($type['upperbound']) && $type['upperbound'] !== '') $high = strtotime($type['upperbound']);
 		if(isset($type['format'])) $format = strtotime($type['format']);
-
+		$high += 86400;
+		if ($low >= $high) {
+			die('Date lowerbound is higher than upper bound');
+		}
 		if(isset($type['distribution']) && $type['distribution'] == 'normal') {
 			$std_dev = $type['stanadarddeviation'] * 86400;
 			return date($format, normal_random($low, $high, $std_dev, $step));

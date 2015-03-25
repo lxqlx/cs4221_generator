@@ -1,0 +1,111 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+.footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 50px;
+  border-top: 1px solid #eee;
+}
+.standarddeviation{
+  display: none;
+  visibility: hidden;
+}
+/*
+ * Global add-ons
+ */
+#add{
+  margin-top:15px;
+  text-align: left;
+  background-color: black;
+}
+
+#input{
+  margin-top: 20px;
+}
+
+.welcome{
+  margin-top: 50px;
+}
+
+#generate{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 50px;
+}
+
+#country{
+  margin-top: 20px;
+}
+
+#output{
+  margin-top: 50px;
+}
+
+td{
+  padding: 3px;
+  width: 200px;
+}
+#cursive{
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: 30px;
+}
+
+#navnames{
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+}
+
+#description{
+  font-family: 'Kreon', serif;
+  font-size: 18px;
+}
+
+.sub-header {
+  padding-bottom: 10px;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
+
+
+
+/*
+ * Main content
+ */
+
+.main {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
